@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+  export let showPrice;
+  export let winner;
   export let celeb;
 </script>
 
@@ -55,6 +57,24 @@
       padding: 0 0 100% 0;
     }
   }
+  .price {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #000a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    font-weight: 700;
+    color: white;
+  }
+
+  .price.large {
+    font-size: 6em;
+  }
 </style>
 
 <div class="card-outer">
@@ -68,5 +88,10 @@
       </h2>
       <p class="type">{celeb.type}</p>
     </div>
+    {#if showPrice}
+      <div class="price" class:large={winner}>
+        <span>${celeb.price}</span> 
+      </div>
+    {/if}
   </button>
 </div>
